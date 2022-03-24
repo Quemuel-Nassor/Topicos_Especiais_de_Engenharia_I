@@ -62,7 +62,7 @@ public class ShipController : MonoBehaviour
     // Function called one time in all update of physical engine (synchronized with physical engine)
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             rb2d.AddRelativeForce(Vector2.up * linearSpeed);
             //rb2d.AddForce(transform.up * linearSpeed);

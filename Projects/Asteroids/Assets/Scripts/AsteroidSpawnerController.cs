@@ -11,7 +11,6 @@ public class AsteroidSpawnerController : MonoBehaviour
 
     Vector3 bottomLeftLimit;
     Vector3 topRightLimit;
-
     Camera cam;
 
 
@@ -25,7 +24,7 @@ public class AsteroidSpawnerController : MonoBehaviour
         cam = Camera.main;
 
         //Get screen limits
-        bottomLeftLimit = cam.ScreenToWorldPoint(new Vector3(0,0,0));
+        bottomLeftLimit = cam.ScreenToWorldPoint(new Vector3(0, 0, 0));
         topRightLimit = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
 
     }
@@ -34,7 +33,7 @@ public class AsteroidSpawnerController : MonoBehaviour
     void Update()
     {
         //Spawn relationated with last spawn
-        if((Time.time - lastSpawnTime) >= spawnInterval)
+        if ((Time.time - lastSpawnTime) >= spawnInterval)
         {
             lastSpawnTime = Time.time;
             SpawnAsteroid();
@@ -52,8 +51,12 @@ public class AsteroidSpawnerController : MonoBehaviour
     void SpawnAsteroid()
     {
         //sort position between screen limits to spawn
-        float posX = Random.Range(bottomLeftLimit.x,topRightLimit.x);
-        float posY = Random.Range(bottomLeftLimit.y,topRightLimit.y);
+        float posX = Random.Range(bottomLeftLimit.x, topRightLimit.x);
+        float posY = Random.Range(bottomLeftLimit.y, topRightLimit.y);
+
+        float size = Random.Range(0.3f, 1f);
+
+        asteroidPrefab.transform.localScale = new Vector3(size, size, 0);
         Instantiate(asteroidPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
     }
 }
